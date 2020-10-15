@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All Teams and Matches</title>
+</head>
+<body>
+    <h3>All Teams</h3>
+    <tbody th:each="team: ${teams}">
+        <p>
+            <span th:text="${'ID: ' + team.teamID}"></span>
+            <span th:text="${'Team name: ' + team.name}"></span>
+            <span th:text="${'Team country: ' + team.country}"></span>
+            <span th:text="${'Team city: ' + team.city}"></span>
+        </p>
+    </tbody>
+
+    <br>
+
+    <h3>All Matches</h3>
+    <tbody th:each="match: ${matches}">
+    <p>
+        <span th:text="${'ID: ' + match.matchID}"></span>
+        <span th:text="${'Date: ' + match.date}"></span>
+    </p>
+    <p>
+        <span th:text="${'Team home id: ' + match.homeTeamID}"></span>
+        <span th:text="${'Team away id: ' + match.awayTeamID}"></span>
+    </p>
+    <p>
+        <span th:text="${'Score: ' + match.goalsHome + ':' + match.goalsAway}"></span>
+    </p>
+    <br>
+    </tbody>
+
+</body>
+</html>

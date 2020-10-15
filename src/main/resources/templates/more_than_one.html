@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Teams that played in more than one match</title>
+</head>
+<body>
+    <h3>Teams that played in more than one match</h3>
+    <tbody th:each="team: ${teams}">
+    <p>
+        <span th:text="${'ID: ' + team.teamID}"></span>
+        <span th:text="${'Team name: ' + team.name}"></span>
+        <span th:text="${'Team country: ' + team.country}"></span>
+        <span th:text="${'Team city: ' + team.city}"></span>
+    </p>
+    </tbody>
+</body>
+</html>

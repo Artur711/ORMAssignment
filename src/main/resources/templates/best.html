@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Best team</title>
+</head>
+<body th:object="${team}">
+    <h3>Best Team</h3>
+    <p>
+        <span th:text="${'ID: ' + team.teamID}"></span>
+        <span th:text="${'Team name: ' + team.name}"></span>
+        <span th:text="${'Team country: ' + team.country}"></span>
+        <span th:text="${'Team city: ' + team.city}"></span>
+    </p>
+</body>
+</html>

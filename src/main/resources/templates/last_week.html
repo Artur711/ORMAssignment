@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Matches played last week</title>
+</head>
+<body>
+    <h3>Matches played last week</h3>
+    <tbody th:each="match: ${matches}">
+        <p>
+            <span th:text="${'ID: ' + match.matchID}"></span>
+            <span th:text="${'Date: ' + match.date}"></span>
+        </p>
+        <p>
+            <span th:text="${'Team home id: ' + match.homeTeamID}"></span>
+            <span th:text="${'Team away id: ' + match.awayTeamID}"></span>
+        </p>
+        <p>
+            <span th:text="${'Score: ' + match.goalsHome + ':' + match.goalsAway}"></span>
+        </p>
+        <br>
+    </tbody>
+</body>
+</html>
