@@ -51,8 +51,8 @@ public class ApplicationService {
     }
 
     public List<Team> teamPlayedMoreOne() {
-
-        return teamRepository.findAll();
+        List<Team> teamList = teamRepository.findAll();
+        return teamList.stream().filter(team -> matchRepository.countByHomeTeamIDOrAwayTeamID(team.getTeamID()) > 1).collect(Collectors.toList());
     }
 
     public Map<Team, Integer> teamAndTheirGoals() {

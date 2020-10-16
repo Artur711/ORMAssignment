@@ -13,4 +13,7 @@ public interface MatchRepository extends CrudRepository<Match, Long> {
 
     @Query("SELECT m FROM Match m where m.homeTeamID = :ID or m.awayTeamID = :ID")
     List<Match> findByHomeTeamIDOrAndAwayTeamID(@Param("ID") Long id);
+
+    @Query("SELECT count (m.matchID) FROM Match m where m.homeTeamID = :ID or m.awayTeamID = :ID")
+    Integer countByHomeTeamIDOrAwayTeamID(@Param("ID") Long id);
 }

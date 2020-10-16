@@ -10,7 +10,7 @@ insert into Teams (team_id, name, country, city) values (9, 'Paris Saint-Germain
 insert into Teams (team_id, name, country, city) values (10, 'Juventus FC', 'Italy', 'Torino');
 
 insert into matches (match_id, date, home_team_id, away_team_id, goals_home, goals_away) values (101, '2020-08-26', 1, 2, 1, 0);
-insert into matches (match_id, date, home_team_id, away_team_id, goals_home, goals_away) values (102, '2020-07-15', 2, 5, 4, 0);
+insert into matches (match_id, date, home_team_id, away_team_id, goals_home, goals_away) values (102, '2020-10-15', 2, 5, 4, 0);
 insert into matches (match_id, date, home_team_id, away_team_id, goals_home, goals_away) values (103, '2020-09-11', 3, 10, 2, 3);
 insert into matches (match_id, date, home_team_id, away_team_id, goals_home, goals_away) values (104, '2020-07-07', 4, 6, 3, 1);
 insert into matches (match_id, date, home_team_id, away_team_id, goals_home, goals_away) values (105, '2020-08-12', 5, 8, 2, 0);
