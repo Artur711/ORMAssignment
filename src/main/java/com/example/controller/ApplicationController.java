@@ -52,7 +52,7 @@ public class ApplicationController {
 
     @GetMapping("/total_goals")
     public String getTeamsTotalGoals(Model model) {
-        model.addAttribute("mapTeams", service.matchWithMostGoals());
+        model.addAttribute("mapTeams", service.teamAndTheirGoals());
         return "total_goals";
     }
 

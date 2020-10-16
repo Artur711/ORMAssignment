@@ -5,11 +5,12 @@
     <title>Teams and their total goal count</title>
 </head>
 <body>
-<!--    <h3>Teams and their total goal count</h3>-->
-<!--    <tbody th:each="team: ${mapTeams}">-->
-<!--    <p>-->
-<!--        <span th:text="${'Name: ' + team.ke}"></span>-->
-<!--    </p>-->
-<!--    </tbody>-->
+    <h3>Teams and their total goal count</h3>
+    <tbody th:each="key: ${mapTeams}">
+    <p>
+        <span th:text="${'Name: ' + key.key.name}"></span>
+        <span th:text="${'Goals: ' + key.value}"></span>
+    </p>
+    </tbody>
 </body>
 </html>

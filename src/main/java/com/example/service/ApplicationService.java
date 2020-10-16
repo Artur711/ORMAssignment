@@ -4,11 +4,9 @@ import com.example.model.Match;
 import com.example.model.Team;
 import com.example.repository.MatchRepository;
 import com.example.repository.TeamRepository;
-import org.h2.value.CaseInsensitiveMap;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,15 +29,8 @@ public class ApplicationService {
     }
 
     public Team bestTeam() {
-        List<Match> matchList = matchRepository.findAll();
-//        Map<Long, Integer> homeGoals = matchList.stream().collect(Collectors.toMap((Match::getHomeTeamID, Match::getGoalsHome));
-//        Map<Long, Integer> awayGoals = matchList.stream().collect(Collectors.toMap(Match::getAwayTeamID, Match::getGoalsAway));
-
-
-//        Map<Long, Match> goalsScored = matchList.stream().collect(Collectors.toMap(Match::getHomeTeamID, Match::getHomeTeamID));
-
-        Long id = 1L;
-        return teamRepository.findByTeamID(id);
+        Map<Team, Integer> map = teamAndTheirGoals();
+        return map.entrySet().stream().max((entry1, entry2) -> entry1.getValue() > entry2.getValue() ? 1 : -1).get().getKey();
     }
 
     public List<Team> teamsContainsFC() {
@@ -64,16 +55,23 @@ public class ApplicationService {
         return teamRepository.findAll();
     }
 
-    public Map<String, Integer> teamAndTheirGoals() {
-        List<Match> matchList = matchRepository.findAll();
+    public Map<Team, Integer> teamAndTheirGoals() {
         List<Team> teamList = teamRepository.findAll();
+        Map<Team, Integer> map = new HashMap<>();
 
-//        Map<Long, Integer> map = matchList.stream().flatMap();
-
-        return new HashMap<>();
+        for (Team team : teamList) {
+            List<Match> matchList = matchRepository.findByHomeTeamIDOrAndAwayTeamID(team.getTeamID());
+            Integer homeGoals = matchList.stream().filter(match -> match.getHomeTeamID() == team.getTeamID()).mapToInt(match1 -> match1.getGoalsHome()).sum();
+            Integer awayGoals = matchList.stream().filter(match -> match.getAwayTeamID() == team.getTeamID()).mapToInt(match1 -> match1.getGoalsAway()).sum();
+            map.put(team, homeGoals + awayGoals);
+        }
+        return map;
     }
 
     public List<Match> matchesLastWeek() {
-        return matchRepository.findAll();
+        List<Match> matchList = matchRepository.findAll();
+        Long weekInMs = 1209600000L;
+        Date date = new Date();
+        return matchList.stream().filter(match -> date.getTime() - match.getDate().getTime() < weekInMs).collect(Collectors.toList());
     }
 }
